@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Musictin</title>
+    
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="./assets/font/fontawesome-free-6.1.1-web/css/all.min.css">
+</head>
+<body>
+    <div class="player">
+        <!-- dashboard -->
+        <div class="dashboard">
+            <!-- header  -->
+            <header>
+                <h4>Now playing:</h4>
+                <h2>Tên bài hát</h2>
+            </header>
+
+            <!-- CD -->
+            <div class="cd">
+                <img class="cd-thumb" src="./assets/img/Shisui.jpg" alt="">
+            </div>
+
+            <!-- control  -->
+            <div class="control">
+                <div class="btn-box">
+                    <div class="btn btn-repeat">
+                        <i class="fa-solid fa-rotate-right"></i>
+                    </div>
+                    <div class="btn btn-prev">
+                        <i class="fa-solid fa-backward-fast"></i>
+                    </div>
+                    <div class="btn btn-toggle-play">
+                        <i class="fa-solid fa-play"></i>
+                        <i class="fa-solid fa-pause"></i>
+                    </div>
+                    <div class="btn btn-next">
+                        <i class="fa-solid fa-forward-fast"></i>
+                    </div>
+                    <div class="btn btn-random">
+                        <i class="fa-solid fa-shuffle"></i>
+                    </div>
+                </div>
+
+                <input type="range" id="progress" class="progress" value="0" step="1" min="0" max="100">
+
+                <audio id="audio" src=""></audio>
+            </div>
+        </div>
+
+        <!-- playlist  -->
+        <div class="playlist">
+            <div class="song">
+                <div class="thumb">
+                    <img src="./assets/img/Shisui.jpg" alt="">
+                </div>
+                <div class="body">
+                    <h3 class="title">Tên bài hát</h3>
+                    <p class="author">Ca sĩ / Nhóm nhạc</p>
+                </div>
+                <div class="option">
+                    <i class="fas fa-ellipsis-h"></i>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    <script src="./assets/js/main.js"></script>
+</body>
+</html>
+
+<!-- echo "# musictin" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/gittint/musictin.git
+git push -u origin main -->
