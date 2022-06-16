@@ -118,3 +118,7 @@ input{
     background-color: palevioletred;
     color: #fff;
 }
+
+.song:active{
+    opacity: 0.8;
+}

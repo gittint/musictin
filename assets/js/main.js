@@ -6,12 +6,13 @@ const heading = $('header h2');
 const cdThumb = $('.cd-thumb');
 const audio = $('#audio');
 const playBtn = $('.btn-toggle-play');
-const player = $('.player')
-const progress = $('#progress')
-const nextBtn = $('.btn-next')
-const prevBtn = $('.btn-prev')
-const randomBtn = $('.btn-random')
-const repeatBtn = $('.btn-repeat')
+const player = $('.player');
+const progress = $('#progress');
+const nextBtn = $('.btn-next');
+const prevBtn = $('.btn-prev');
+const randomBtn = $('.btn-random');
+const repeatBtn = $('.btn-repeat');
+const playlist = $('.playlist');
 
 
 const app = {
@@ -73,7 +74,7 @@ const app = {
     render: function(){
         const htmls = this.songs.map((song, index) => {
             return `
-                <div class="song ${index === this.currentIndex ? 'song--active' : ''}">
+                <div class="song ${index === this.currentIndex ? 'song--active' : ''}" data-index="${index}">
                     <div class="thumb">
                         <img src="${song.image}" alt="">
                     </div>
@@ -88,7 +89,7 @@ const app = {
             `
         })
 
-        $('.playlist').innerHTML = htmls.join('\n')
+        playlist.innerHTML = htmls.join('\n')
     },
 
     defineProperties: function(){
@@ -172,6 +173,7 @@ const app = {
             }
             audio.play();
             app.render();
+            app.scrollToActiveSong();
         }
 
         //Khi prev bài hát 
@@ -183,6 +185,7 @@ const app = {
             }
             audio.play();
             app.render();
+            app.scrollToActiveSong();
         }
 
         //khi random bài hát (bật tắt random song)
@@ -206,6 +209,34 @@ const app = {
                 nextBtn.click();
             }
         }
+
+        //Xử lý khi chọn bài hát (lăng nghe hành vi click vào playlist)
+        playlist.onclick = function (e) {
+            //Xử lý khi click vào song
+            const songNode = e.target.closest('.song:not(.song--active)');
+            if (songNode || e.target.closest('.option') ){
+                //Xử lý khi click vào song
+                if (songNode){
+                    app.currentIndex = Number(songNode.getAttribute('data-index'));
+                    app.loadCurrentSong();
+                    audio.play();
+                    app.render();
+                }
+                //Xử lý khi click vào option (dấu 3 chấm ...)
+                if(e.target.closest('.option')){
+                    //
+                }
+            }
+        }
+    },
+
+    scrollToActiveSong: function(){
+        setTimeout(() => {
+            $('.song.song--active').scrollIntoView({
+                behavior: 'smooth',
+                block: 'nearest',
+            })
+        }, 300)
     },
 
     loadCurrentSong: function(){
