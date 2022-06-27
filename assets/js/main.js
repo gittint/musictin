@@ -14,73 +14,65 @@ const randomBtn = $('.btn-random');
 const repeatBtn = $('.btn-repeat');
 const playlist = $('.playlist');
 
+const API ="http://localhost:3000/songs";
+var data;
+
 
 const app = {
     currentIndex: 0,
     isPlaying : false,
     isRandom : false,
     isRepeat : false,
-    songs: [
-        {
-            name: 'Em',
-            singer: 'Xám',
-            path: './assets/img/Em.m4a',
-            image: './assets/img/Xám.jpg' 
-        },
-        {
-            name: 'Bạn không hiểu tôi',
-            singer: 'Tôi',
-            path: './assets/img/Bankhonghieutoi.m4a',
-            image: './assets/img/Shisui.jpg' 
-        },
-        {
-            name: 'Cho anh cho em',
-            singer: 'Seachain',
-            path: './assets/img/Choanhchoem.m4a',
-            image: './assets/img/seachain.png' 
-        },
-        {
-            name: 'Smile',
-            singer: 'Obito',
-            path: './assets/img/Smile.m4a',
-            image: './assets/img/Obito.jpg' 
-        },
-        {
-            name: 'Em',
-            singer: 'Xám',
-            path: './assets/img/Em.m4a',
-            image: './assets/img/Xám.jpg' 
-        },
-        {
-            name: 'Bạn không hiểu tôi',
-            singer: 'Tôi',
-            path: './assets/img/Bankhonghieutoi.m4a',
-            image: './assets/img/Shisui.jpg' 
-        },
-        {
-            name: 'Cho anh cho em',
-            singer: 'Seachain',
-            path: './assets/img/Choanhchoem.m4a',
-            image: './assets/img/seachain.png' 
-        },
-        {
-            name: 'Smile',
-            singer: 'Obito',
-            path: './assets/img/Smile.m4a',
-            image: './assets/img/Obito.jpg' 
-        }
-    ],
+    // songs: [
+    //     {
+    //         title: 'Em',
+    //         creator: 'Xám',
+    //         music: './assets/img/Em.m4a',
+    //         bgImage: './assets/img/Xám.jpg' 
+    //     },
+    //     {
+    //         title: 'Bạn không hiểu tôi',
+    //         creator: 'Tôi',
+    //         music: './assets/img/Bankhonghieutoi.m4a',
+    //         bgImage: './assets/img/Shisui.jpg' 
+    //     },
+    //     {
+    //         title: 'Cho anh cho em',
+    //         creator: 'Seachain',
+    //         music: './assets/img/Choanhchoem.m4a',
+    //         bgImage: './assets/img/seachain.png' 
+    //     },
+    //     {
+    //         title: 'Smile',
+    //         creator: 'Obito',
+    //         music: './assets/img/Smile.m4a',
+    //         bgImage: './assets/img/Obito.jpg' 
+    //     }
+    // ],
+
+    songs : [],
+    getData: function(){
+        return fetch(API)
+            .then(function(response){
+                return response.json();
+            })
+            .then(function(data){
+                app.songs = app.songs.concat(data);
+                console.log(app.songs)
+                return app.songs
+            })
+    },
 
     render: function(){
         const htmls = this.songs.map((song, index) => {
             return `
                 <div class="song ${index === this.currentIndex ? 'song--active' : ''}" data-index="${index}">
                     <div class="thumb">
-                        <img src="${song.image}" alt="">
+                        <img src="${song.bgImage}" alt="">
                     </div>
                     <div class="body">
-                        <h3 class="title">${song.name}</h3>
-                        <p class="author">${song.singer}</p>
+                        <h3 class="title">${song.title}</h3>
+                        <p class="author">${song.creator}</p>
                     </div>
                     <div class="option">
                         <i class="fas fa-ellipsis-h"></i>
@@ -91,6 +83,7 @@ const app = {
 
         playlist.innerHTML = htmls.join('\n')
     },
+
 
     defineProperties: function(){
         Object.defineProperty(this,'currentSong', {
@@ -155,6 +148,11 @@ const app = {
             if (audio.duration){
                 const progressPercent = Math.floor(audio.currentTime / audio.duration *100);
                 progress.value = progressPercent
+
+                //currentTime và duration
+                
+                document.querySelector('.currentTime').innerHTML= `${Math.floor(Math.floor(audio.currentTime) / 60)}:${(Math.floor(audio.currentTime) % 60)< 10 ? "0":""}${(Math.floor(audio.currentTime) % 60)}`;
+                document.querySelector('.rangerTime').innerHTML=  `${Math.floor(Math.floor(audio.duration) / 60)}:${(Math.floor(audio.duration) % 60)< 10 ? "0":""}${(Math.floor(audio.duration) % 60)}`;
             }
         }
 
@@ -241,11 +239,12 @@ const app = {
 
     loadCurrentSong: function(){
 
-        heading.textContent = this.currentSong.name;
-        cdThumb.src = this.currentSong.image;
-        audio.src = this.currentSong.path;
+        heading.textContent = this.currentSong.title;
+        cdThumb.src = this.currentSong.bgImage;
+        audio.src = this.currentSong.music;
 
         console.log(heading,cdThumb,audio);
+
     },
 
     nextSong: function(){
@@ -258,7 +257,7 @@ const app = {
 
     prevSong: function(){
         this.currentIndex--;
-        if (this.currentIndex <= 0){
+        if (this.currentIndex < 0){
             this.currentIndex = this.songs.length-1;
         }
         this.loadCurrentSong();
@@ -274,8 +273,11 @@ const app = {
         this.loadCurrentSong()
     },
 
-    start: function(){
-        //Định nghĩa thuộc c=tính cho object
+    start: async function(){
+
+        await this.getData(this.render); //lấy dữ liệu rồi render dữ liệu
+
+        //Định nghĩa thuộc tính cho object
         this.defineProperties();
 
         //Lắng nghe / xứ lý các sự kiện (cuộn trang)

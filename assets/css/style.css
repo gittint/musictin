@@ -40,8 +40,8 @@ header{
 }
 
 input{
-    width: 90%;
-    margin: 20px 0 0 10px;
+    width: 70%;
+    margin: 10px 10px 10px 10px;
 }
 
 .playlist{
@@ -121,4 +121,10 @@ input{
 
 .song:active{
     opacity: 0.8;
+}
+
+.ranger{
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
 }
