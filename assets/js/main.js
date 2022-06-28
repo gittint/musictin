@@ -57,9 +57,8 @@ const app = {
                 return response.json();
             })
             .then(function(data){
-                app.songs = app.songs.concat(data);
-                app.songs = app.songs[0].songs.top100_VN[4].songs;
-                // console.log(app.songs[0].songs.top100_VN[4].songs)
+                app.songs = data.songs.top100_VN[4].songs;
+                console.log(app.songs)
                 return app.songs
             })
     },
