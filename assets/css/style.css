@@ -126,5 +126,49 @@ input{
 .ranger{
     display: flex;
     align-items: center;
-    margin-left: 20px;
+    margin-left: 10px;
+
+}
+
+.volume-range{
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    position: absolute;
+    top: 27%;
+    right: -7%;
+}
+
+.volume-range input{
+    width: 100px;
+    transform: rotateZ(270deg);
+    display: block;
+    margin: 45px 0;
+    visibility: hidden;
+    opacity: 0;
+    transition: all ease 0.2s;
+}
+
+.volume-range i{
+    display: block;
+    padding: 10px;
+}
+
+.volume-range .volume-percent{
+    display: block;
+    visibility: hidden;
+    opacity: 0;
+    transition: all ease 0.2s;
+}
+
+.volume-range.volume-range--active input{
+    opacity: 1;
+    visibility: visible;
+    transition: all ease 0.2s;
+}
+
+.volume-range.volume-range--active .volume-percent{
+    opacity: 1;
+    visibility: visible;
+    transition: all ease 0.2s;
 }

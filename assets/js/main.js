@@ -14,6 +14,10 @@ const randomBtn = $('.btn-random');
 const repeatBtn = $('.btn-repeat');
 const playlist = $('.playlist');
 
+const volumeProgress = $('#volume');
+const volumeBtn = $('.volume-range i')
+const volumeRanger = $('.volume-range')
+
 const API ="https://api.apify.com/v2/key-value-stores/EJ3Ppyr2t73Ifit64/records/LATEST?fbclid=IwAR0yK8aN8clnwY2xaELCLf-0dpQWPiFRtDJeAfVPe9vaj0S7Vq_Eie0ffoM";
 var data;
 
@@ -147,19 +151,30 @@ const app = {
         audio.ontimeupdate = function(){
             if (audio.duration){
                 const progressPercent = Math.floor(audio.currentTime / audio.duration *100);
-                progress.value = progressPercent
+                progress.value = progressPercent;
 
                 //currentTime và duration
                 
                 document.querySelector('.currentTime').innerHTML= `${Math.floor(Math.floor(audio.currentTime) / 60)}:${(Math.floor(audio.currentTime) % 60)< 10 ? "0":""}${(Math.floor(audio.currentTime) % 60)}`;
                 document.querySelector('.rangerTime').innerHTML=  `${Math.floor(Math.floor(audio.duration) / 60)}:${(Math.floor(audio.duration) % 60)< 10 ? "0":""}${(Math.floor(audio.duration) % 60)}`;
             }
-        }
+        }        
 
         //Xử lý khi tua xong
         progress.onchange = function(e){
             const seeTime = audio.duration / 100 * e.target.value;
             audio.currentTime = seeTime;
+        }
+
+        //xử lý Khi âm lượng thay đổi 
+        volumeProgress.onchange = function(e){
+            audio.volume = e.target.value/100;
+            console.log(audio.volume)
+        }
+
+        //Xử lý khi ckick vào volume button
+        volumeBtn.onclick = function(e){
+            volumeRanger.classList.toggle('volume-range--active');
         }
 
         //Khi next bài hát 
