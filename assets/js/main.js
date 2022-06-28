@@ -14,7 +14,7 @@ const randomBtn = $('.btn-random');
 const repeatBtn = $('.btn-repeat');
 const playlist = $('.playlist');
 
-const API ="http://localhost:3000/songs";
+const API ="https://api.apify.com/v2/key-value-stores/EJ3Ppyr2t73Ifit64/records/LATEST?fbclid=IwAR0yK8aN8clnwY2xaELCLf-0dpQWPiFRtDJeAfVPe9vaj0S7Vq_Eie0ffoM";
 var data;
 
 
@@ -58,7 +58,8 @@ const app = {
             })
             .then(function(data){
                 app.songs = app.songs.concat(data);
-                console.log(app.songs)
+                app.songs = app.songs[0].songs.top100_VN[4].songs;
+                // console.log(app.songs[0].songs.top100_VN[4].songs)
                 return app.songs
             })
     },
