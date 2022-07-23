@@ -17,6 +17,7 @@ const playlist = $('.playlist');
 const volumeProgress = $('#volume');
 const volumeBtn = $('.volume-range i')
 const volumeRanger = $('.volume-range')
+const volumePercent = $('.volume-percent')
 
 const API ="https://api.apify.com/v2/key-value-stores/EJ3Ppyr2t73Ifit64/records/LATEST?fbclid=IwAR0yK8aN8clnwY2xaELCLf-0dpQWPiFRtDJeAfVPe9vaj0S7Vq_Eie0ffoM";
 var data;
@@ -169,6 +170,8 @@ const app = {
         //xử lý Khi âm lượng thay đổi 
         volumeProgress.onchange = function(e){
             audio.volume = e.target.value/100;
+            const percent = parseInt(audio.volume*100);
+            volumePercent.innerHTML=`${percent}`
             console.log(audio.volume)
         }
 
