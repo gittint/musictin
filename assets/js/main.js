@@ -11,7 +11,7 @@ const player = $('.player');
 const progress = $('#progress');
 const nextBtn = $('.btn-next');
 const prevBtn = $('.btn-prev');
-const randomBtn = $('.btn-random');
+const randomBtn = $('.btn-random-icon');
 const repeatBtn = $('.btn-repeat');
 const playlist = $('.playlist');
 

@@ -38,7 +38,6 @@ header{
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-    position: relative;
 }
 
 input{
@@ -96,6 +95,10 @@ input{
     text-align: center;
 }
 
+.btn-random{
+    position: relative;
+}
+
 .btn .fa-pause{
     display: none;
 }
@@ -108,8 +111,9 @@ input{
     display: block;
 }
 
-.btn-random.btn-random--active{
+.btn-random-icon.btn-random--active{
     color: palevioletred;
+
 }
 
 .btn-repeat.btn-repeat--active{
@@ -138,8 +142,9 @@ input{
     flex-direction: column-reverse;
     align-items: center;
     position: absolute;
-    top: -172px;
-    right: 19px;
+    bottom: 25px;
+    left: -40px;
+    z-index: 2;
 }
 
 .volume-range input{

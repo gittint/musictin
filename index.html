@@ -41,15 +41,17 @@
                         <i class="fa-solid fa-forward-fast"></i>
                     </div>
                     <div class="btn btn-random">
-                        <i class="fa-solid fa-shuffle"></i>
+                        <i class="fa-solid fa-shuffle btn-random-icon"></i>
+
+                        <!-- Nút âm lượng -->
+                        <div class="volume-range" onclick="event.stopPropagation()">
+                            <i class="fa-solid fa-volume-high"></i>
+                            <input type="range" id="volume" class="volume" value="100" step="1" min="0" max="100">
+                            <div class="volume-percent">100</div>
+                        </div>
                     </div>
 
 
-                    <div class="volume-range">
-                        <i class="fa-solid fa-volume-high"></i>
-                        <input type="range" id="volume" class="volume" value="100" step="1" min="0" max="100">
-                        <div class="volume-percent">100</div>
-                    </div>
                 </div>
 
                 <div class="ranger">
@@ -81,6 +83,9 @@
         </div>
     </div>
 
+    <script>
+        
+    </script>
     <script type="module" src="./assets/js/main.js"></script>
 </body>
 </html>
