@@ -136,9 +136,9 @@ input{
     display: flex;
     flex-direction: column-reverse;
     align-items: center;
-    position: absolute;
-    top: 27%;
-    right: -7%;
+    position: fixed;
+    top: 2.6%;
+    right: -9%;
 }
 
 .volume-range input{
