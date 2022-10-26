@@ -1,3 +1,4 @@
+import {data as dt} from './db.js'
 const $ = document.querySelector.bind(document);
 const $$ = document.querySelectorAll.bind(document);
 
@@ -22,51 +23,25 @@ const volumePercent = $('.volume-percent')
 const API ="https://api.apify.com/v2/key-value-stores/EJ3Ppyr2t73Ifit64/records/LATEST?fbclid=IwAR0yK8aN8clnwY2xaELCLf-0dpQWPiFRtDJeAfVPe9vaj0S7Vq_Eie0ffoM";
 var data;
 
-
 const app = {
     currentIndex: 0,
     isPlaying : false,
     isRandom : false,
     isRepeat : false,
-    // songs: [
-    //     {
-    //         title: 'Em',
-    //         creator: 'Xám',
-    //         music: './assets/img/Em.m4a',
-    //         bgImage: './assets/img/Xám.jpg' 
-    //     },
-    //     {
-    //         title: 'Bạn không hiểu tôi',
-    //         creator: 'Tôi',
-    //         music: './assets/img/Bankhonghieutoi.m4a',
-    //         bgImage: './assets/img/Shisui.jpg' 
-    //     },
-    //     {
-    //         title: 'Cho anh cho em',
-    //         creator: 'Seachain',
-    //         music: './assets/img/Choanhchoem.m4a',
-    //         bgImage: './assets/img/seachain.png' 
-    //     },
-    //     {
-    //         title: 'Smile',
-    //         creator: 'Obito',
-    //         music: './assets/img/Smile.m4a',
-    //         bgImage: './assets/img/Obito.jpg' 
-    //     }
-    // ],
+    songs: dt.songs,
 
-    songs : [],
-    getData: function(){
-        return fetch(API)
-            .then(function(response){
-                return response.json();
-            })
-            .then(function(data){
-                app.songs = data.songs.top100_VN[4].songs;
-                console.log(app.songs)
-                return app.songs
-            })
-    },
+    // songs : [],
+    // getData: function(){
+    //     return fetch(API)
+    //         .then(function(response){
+    //             return response.json();
+    //         })
+    //         .then(function(data){
+    //             app.songs = data.songs.top100_VN[4].songs;
+    //             console.log(app.songs)
+    //             return app.songs
+    //         })
+    // },
 
     render: function(){
         const htmls = this.songs.map((song, index) => {
@@ -292,8 +267,8 @@ const app = {
     },
 
     start: async function(){
-
-        await this.getData(this.render); //lấy dữ liệu rồi render dữ liệu
+        //lấy dữ liệu rồi render dữ liệu
+        // await this.getData(this.render); 
 
         //Định nghĩa thuộc tính cho object
         this.defineProperties();

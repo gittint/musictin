@@ -1,4 +1,4 @@
-{
+var data = {
     "songs": [
       {
         "avatar": "https://avatar-ex-swe.nixcdn.com/song/2021/08/10/b/2/e/0/1628579601228.jpg",
@@ -1002,3 +1002,6 @@
       }
     ]
   }
+
+
+  export {data};
