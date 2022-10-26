@@ -38,6 +38,7 @@ header{
     display: flex;
     align-items: center;
     justify-content: space-evenly;
+    position: relative;
 }
 
 input{
@@ -136,9 +137,9 @@ input{
     display: flex;
     flex-direction: column-reverse;
     align-items: center;
-    position: fixed;
-    top: 2.6%;
-    right: -9%;
+    position: absolute;
+    top: -172px;
+    right: 19px;
 }
 
 .volume-range input{

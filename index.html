@@ -43,6 +43,13 @@
                     <div class="btn btn-random">
                         <i class="fa-solid fa-shuffle"></i>
                     </div>
+
+
+                    <div class="volume-range">
+                        <i class="fa-solid fa-volume-high"></i>
+                        <input type="range" id="volume" class="volume" value="100" step="1" min="0" max="100">
+                        <div class="volume-percent">100</div>
+                    </div>
                 </div>
 
                 <div class="ranger">
@@ -51,11 +58,6 @@
                     <div class="rangerTime">0:0</div>
                 </div>
                 
-                <div class="volume-range">
-                    <i class="fa-solid fa-volume-high"></i>
-                    <input type="range" id="volume" class="volume" value="100" step="1" min="0" max="100">
-                    <div class="volume-percent">100</div>
-                </div>
 
                 <audio id="audio" src=""></audio>
             </div>
