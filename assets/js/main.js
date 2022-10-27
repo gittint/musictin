@@ -1,4 +1,4 @@
-import {data as dt} from './db.js'
+// import {data as dt} from './db.js'
 const $ = document.querySelector.bind(document);
 const $$ = document.querySelectorAll.bind(document);
 
@@ -20,28 +20,28 @@ const volumeBtn = $('.volume-range i')
 const volumeRanger = $('.volume-range')
 const volumePercent = $('.volume-percent')
 
-const API ="https://api.apify.com/v2/key-value-stores/EJ3Ppyr2t73Ifit64/records/LATEST?fbclid=IwAR0yK8aN8clnwY2xaELCLf-0dpQWPiFRtDJeAfVPe9vaj0S7Vq_Eie0ffoM";
-var data;
+const API ="http://localhost:3000/songs";
+// var data;
 
 const app = {
     currentIndex: 0,
     isPlaying : false,
     isRandom : false,
     isRepeat : false,
-    songs: dt.songs,
 
-    // songs : [],
-    // getData: function(){
-    //     return fetch(API)
-    //         .then(function(response){
-    //             return response.json();
-    //         })
-    //         .then(function(data){
-    //             app.songs = data.songs.top100_VN[4].songs;
-    //             console.log(app.songs)
-    //             return app.songs
-    //         })
-    // },
+    // songs: dt.songs,
+
+    songs : [],
+    getData: function(){
+        return fetch(API)
+            .then(function(response){
+                return response.json();
+            })
+            .then(function(data){
+                app.songs = data;
+                return app.songs
+            })
+    },
 
     render: function(){
         const htmls = this.songs.map((song, index) => {
@@ -268,7 +268,7 @@ const app = {
 
     start: async function(){
         //lấy dữ liệu rồi render dữ liệu
-        // await this.getData(this.render); 
+        await this.getData(this.render); 
 
         //Định nghĩa thuộc tính cho object
         this.defineProperties();
