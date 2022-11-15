@@ -20,7 +20,7 @@ const volumeBtn = $('.volume-range i')
 const volumeRanger = $('.volume-range')
 const volumePercent = $('.volume-percent')
 
-const API ="http://localhost:3000/songs";
+const API ="https://6373003c0bb6b698b6ffe030.mockapi.io/Music";
 // var data;
 
 const app = {
@@ -286,3 +286,4 @@ const app = {
 }
 
 app.start()
+
