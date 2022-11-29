@@ -174,14 +174,15 @@ input{
     transition: all ease 0.2s;
 }
 
+.option{
+    padding-left: 25px;
+    padding-right: 20px;
+}
+
 .volume-range.volume-range--active .volume-percent{
     opacity: 1;
     visibility: visible;
     transition: all ease 0.2s;
 }
 
-.option{
-    padding-left: 25px;
-    padding-right: 20px;
-}
 
